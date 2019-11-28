@@ -7,16 +7,10 @@ namespace DiceParser
     public class Tokenizer
     {
 
-        private string pattern = @"(\+)|(-)|(\*)|(\/)|(\()|(\))";
-
         public string[] Tokenize(string input)
         {
-            string[] temp =  Regex.Split(input, pattern);
-
-            for (int i = 0; i < temp.Length; i++)
-            {
-                temp[i].Replace(" ", "");
-            }
+            input = input.Replace(" ", "");
+            string[] temp =  Regex.Split(input, @"(\+)|((?<=[0-9])\-)|(\*)|(\/)|(\()|(\))");
 
             return temp;
         }
