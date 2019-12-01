@@ -10,7 +10,7 @@ namespace DiceParser
         public string[] Tokenize(string input)
         {
             input = input.Replace(" ", "");
-            string[] temp =  Regex.Split(input, @"(\+)|((?<=[0-9])\-)|(\*)|(\/)|(\()|(\))");
+            string[] temp = Regex.Split(input, @"(\+)|((?<=[0-9])\-)|(\*)|(\/)|(\()|(\))");
 
             return temp;
         }

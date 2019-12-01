@@ -2,13 +2,13 @@
 
 namespace DiceParser
 {
-    class Program
+    public class Program
     {
 
         private static Version version = new Version(1, 1, 0);
         private static bool isRunning = true;
 
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Interpreter interpreter = new Interpreter();
 
@@ -20,20 +20,7 @@ namespace DiceParser
             {
                 string input = Console.ReadLine();
 
-                if (input.ToLower() == "clear")
-                {
-                    Console.Clear();
-                    continue;
-                }
-                else if (input.ToLower() == "exit")
-                {
-                    isRunning = false;
-                    return;
-                }
-                else if (input.Trim() == "")
-                {
-                    continue;
-                }
+                if (isCommand(input)) continue;
 
                 try
                 {
@@ -43,6 +30,25 @@ namespace DiceParser
                 {
                     Console.WriteLine("Invalid expression.");
                 }
+            }
+        }
+
+        private static bool isCommand(string input)
+        {
+            input = input.ToLower().Trim();
+
+            switch (input)
+            {
+                case "clear":
+                    Console.Clear();
+                    return true;
+                case "exit":
+                    isRunning = false;
+                    return true;
+                case "":
+                    return true;
+                default:
+                    return false;
             }
         }
     }
