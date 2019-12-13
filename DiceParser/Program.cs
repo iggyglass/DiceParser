@@ -5,12 +5,14 @@ namespace DiceParser
     public class Program
     {
 
-        private static Version version = new Version(1, 1, 0);
+        private static Version version = new Version(1, 2, 0);
         private static bool isRunning = true;
 
         public static void Main(string[] args)
         {
             Interpreter interpreter = new Interpreter();
+            
+            bool verbose = isVerbose(args);
 
             Console.Title = "Dice Parser";
             Console.WriteLine($"Welcome to Dice Parser v. {version}.");
@@ -26,11 +28,26 @@ namespace DiceParser
                 {
                     Console.WriteLine("> " + interpreter.Interpret(input));
                 }
-                catch (Exception)
+                catch (Exception e)
                 {
-                    Console.WriteLine("Invalid expression.");
+                    if (verbose) Console.WriteLine($"Encountered error: {e.Message}");
+                    else Console.WriteLine("Invalid expression.");
                 }
             }
+        }
+
+        private static bool isVerbose(string[] args)
+        {
+            #if DEBUG
+            return true;
+            #endif
+
+            for (int i = 0; i < args.Length; i++)
+            {
+                if (args[i].ToLower() == "-v") return true;
+            }
+
+            return false;
         }
 
         private static bool isCommand(string input)

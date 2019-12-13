@@ -1,0 +1,11 @@
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\bin\Release\netcoreapp3.0\DiceParser.exe
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\bin\Release\netcoreapp3.0\DiceParser.deps.json
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\bin\Release\netcoreapp3.0\DiceParser.runtimeconfig.json
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\bin\Release\netcoreapp3.0\DiceParser.runtimeconfig.dev.json
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\bin\Release\netcoreapp3.0\DiceParser.dll
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\bin\Release\netcoreapp3.0\DiceParser.pdb
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\obj\Release\netcoreapp3.0\DiceParser.csprojAssemblyReference.cache
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\obj\Release\netcoreapp3.0\DiceParser.AssemblyInfoInputs.cache
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\obj\Release\netcoreapp3.0\DiceParser.AssemblyInfo.cs
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\obj\Release\netcoreapp3.0\DiceParser.dll
+C:\Users\iggyg\source\repos\DiceParser\DiceParser\obj\Release\netcoreapp3.0\DiceParser.pdb
