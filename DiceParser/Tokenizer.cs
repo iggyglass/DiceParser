@@ -4,18 +4,17 @@ using System.Text.RegularExpressions;
 
 namespace DiceParser
 {
-    public class Tokenizer
+    public static class Tokenizer
     {
-
-        public string[] Tokenize(string input)
+        public static string[] Tokenize(string input)
         {
             input = input.Replace(" ", "");
-            string[] temp = Regex.Split(input, @"(\+)|((?<=[0-9])\-)|(\*)|(\/)|(\()|(\))");
+            string[] temp = Regex.Split(input, @"(\+)|((?<=[0-9])\-)|(\*)|(\/)|(\()|(\))|(d)");
 
             return temp;
         }
 
-        public Queue<string> ToRPN(string[] tokens)
+        public static Queue<string> ToRPN(string[] tokens)
         {
             Queue<string> output = new Queue<string>();
             StringStack operators = new StringStack(1024);
@@ -26,9 +25,9 @@ namespace DiceParser
                 {
                     output.Enqueue(tokens[i]);
                 }
-                else if (Regex.IsMatch(tokens[i], @"(\+)|(-)|(\*)|(\/)"))
+                else if (Regex.IsMatch(tokens[i], @"(\+)|(-)|(\*)|(\/)|(d)"))
                 {
-                    while (operators.Peek() != null && Regex.IsMatch(operators.Peek(), @"(\+)|(-)|(\*)|(\/)") && GetPrecedence(tokens[i]) <= GetPrecedence(operators.Peek()))
+                    while (operators.Peek() != null && Regex.IsMatch(operators.Peek(), @"(\+)|(-)|(\*)|(\/)|(d)") && GetPrecedence(tokens[i]) <= GetPrecedence(operators.Peek()))
                     {
                         output.Enqueue(operators.Pop());
                     }
@@ -66,7 +65,7 @@ namespace DiceParser
             return output;
         }
 
-        public SyntaxNode ToAST(string[] tokens)
+        public static SyntaxNode ToAST(string[] tokens)
         {
             Stack<SyntaxNode> output = new Stack<SyntaxNode>();
             StringStack operators = new StringStack(1024);
@@ -77,9 +76,9 @@ namespace DiceParser
                 {
                     output.Push(SyntaxNode.FromToken(tokens[i]));
                 }
-                else if (Regex.IsMatch(tokens[i], @"(\+)|(-)|(\*)|(\/)"))
+                else if (Regex.IsMatch(tokens[i], @"(\+)|(-)|(\*)|(\/)|(d)"))
                 {
-                    while (operators.Peek() != null && Regex.IsMatch(operators.Peek(), @"(\+)|(-)|(\*)|(\/)") && GetPrecedence(tokens[i]) <= GetPrecedence(operators.Peek()))
+                    while (operators.Peek() != null && Regex.IsMatch(operators.Peek(), @"(\+)|(-)|(\*)|(\/)|(d)") && GetPrecedence(tokens[i]) <= GetPrecedence(operators.Peek()))
                     {
                         SyntaxNode node = SyntaxNode.FromToken(operators.Pop());
 
@@ -129,7 +128,7 @@ namespace DiceParser
             return output.Pop();
         }
 
-        public int GetPrecedence(string op)
+        public static int GetPrecedence(string op)
         {
             switch (op)
             {
@@ -141,6 +140,8 @@ namespace DiceParser
                     return 3;
                 case "/":
                     return 3;
+                case "d":
+                    return 2;
                 default:
                     throw new InvalidOperationException($"Operator {op} not found.");
             }

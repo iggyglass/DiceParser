@@ -5,13 +5,11 @@ namespace DiceParser
     public class Program
     {
 
-        private static Version version = new Version(1, 2, 0);
+        private static Version version = new Version(1, 3, 0);
         private static bool isRunning = true;
 
         public static void Main(string[] args)
-        {
-            Interpreter interpreter = new Interpreter();
-            
+        {            
             bool verbose = isVerbose(args);
 
             Console.Title = "Dice Parser";
@@ -26,7 +24,7 @@ namespace DiceParser
 
                 try
                 {
-                    Console.WriteLine("> " + interpreter.Interpret(input));
+                    Console.WriteLine("> " + Interpreter.Interpret(input));
                 }
                 catch (Exception e)
                 {

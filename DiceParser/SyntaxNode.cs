@@ -52,6 +52,21 @@ namespace DiceParser
                         return new SyntaxNode(delegate (int a, int b) { return a * b; }, false);
                     case "/":
                         return new SyntaxNode(delegate (int a, int b) { return a / b; }, false);
+                    case "d":
+                        return new SyntaxNode(delegate (int a, int b)
+                        {
+                            if (a < 0 || b < 0) throw new Exception("Dice operator encountered a negative number.");
+
+                            Random rand = new Random();
+                            int total = 0;
+
+                            for (int i = 0; i < a; i++)
+                            {
+                                total += rand.Next(1, b + 1);
+                            }
+
+                            return total;
+                        }, false);
                     default:
                         throw new Exception("Invalid token");
                 }
